@@ -41,7 +41,35 @@
                             class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <img alt="image" src="{{ asset('assets/img/avatar/avatar-1.png') }}"
                                 class="rounded-circle mr-1">
-                            <div class="d-sm-none d-lg-inline-block">Hi, {{ auth()->user()->name }}</div>
+                            <div class="d-sm-none d-lg-inline-block"><?php
+
+                                date_default_timezone_set("Asia/Jakarta");
+                                
+                                $b = time();
+                                $hour = date("G",$b);
+                                
+                                if ($hour>=0 && $hour<=11)
+                                {
+                                echo "Selamat Pagi :)";
+                                }
+                                elseif ($hour >=12 && $hour<=14)
+                                {
+                                echo "Selamat Siang :) ";
+                                }
+                                elseif ($hour >=15 && $hour<=17)
+                                {
+                                echo "Selamat Sore :) ";
+                                }
+                                elseif ($hour >=17 && $hour<=18)
+                                {
+                                echo "Selamat Petang :) ";
+                                }
+                                elseif ($hour >=19 && $hour<=23)
+                                {
+                                echo "Selamat Malam :) ";
+                                }
+                                
+                                ?> {{ auth()->user()->name }}</div>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right">
                             <a href="{{ route('logout') }}" style="cursor: pointer" onclick="event.preventDefault();
@@ -71,25 +99,25 @@
                                 <span>Dashboard</span></a></li>
                         @can('posts.index')
                         <li class="{{ setActive('admin/post') }}"><a class="nav-link"
-                                href="#"><i class="fas fa-book-open"></i>
+                                href="{{ route('admin.post.index') }}"><i class="fas fa-book-open"></i>
                                 <span>Berita</span></a></li>
                         @endcan
 
                         @can('tags.index')
                         <li class="{{ setActive('admin/tag') }}"><a class="nav-link"
-                                href="#"><i class="fas fa-tags"></i> <span>Tags</span></a>
+                                href="{{ route('admin.tag.index') }}"><i class="fas fa-tags"></i> <span>Tags</span></a>
                         </li>
                         @endcan
 
                         @can('categories.index')
                         <li class="{{ setActive('admin/category') }}"><a class="nav-link"
-                                href="#"><i class="fas fa-folder"></i>
+                                href="{{ route('admin.category.index') }}"><i class="fas fa-folder"></i>
                                 <span>Kategori</span></a></li>
                         @endcan
 
                         @can('events.index')
                         <li class="{{ setActive('admin/event') }}"><a class="nav-link"
-                                href="#"><i class="fas fa-bell"></i>
+                                href="{{ route('admin.event.index') }}"><i class="fas fa-bell"></i>
                                 <span>Agenda</span></a></li>
                         @endcan
 
@@ -99,13 +127,13 @@
 
                         @can('photos.index')
                         <li class="{{ setActive('admin/photo') }}"><a class="nav-link"
-                                href="#"><i class="fas fa-image"></i>
+                                href="{{ route('admin.photo.index') }}"><i class="fas fa-image"></i>
                                 <span>Foto</span></a></li>
                         @endcan
 
                         @can('videos.index')
                         <li class="{{ setActive('admin/video') }}"><a class="nav-link"
-                                href="#"><i class="fas fa-video"></i>
+                                href="{{ route('admin.video.index') }}"><i class="fas fa-video"></i>
                                 <span>Video</span></a></li>
                         @endcan
 
@@ -115,7 +143,7 @@
 
                         @can('sliders.index')
                         <li class="{{ setActive('admin/slider') }}"><a class="nav-link"
-                                href="#"><i class="fas fa-laptop"></i>
+                                href="{{ route('admin.slider.index') }}"><i class="fas fa-laptop"></i>
                                 <span>Sliders</span></a></li>
                         @endcan
 
@@ -129,19 +157,19 @@
                             <ul class="dropdown-menu">
                                 @can('roles.index')
                                     <li class="{{ setActive('admin/role') }}"><a class="nav-link"
-                                        href="#"><i class="fas fa-unlock"></i> Roles</a>
+                                        href="{{ route('admin.role.index') }}"><i class="fas fa-unlock"></i> Roles</a>
                                 </li>
                                 @endcan
 
                                 @can('permissions.index')
                                     <li class="{{ setActive('admin/permission') }}"><a class="nav-link"
-                                    href="#"><i class="fas fa-key"></i>
+                                    href="{{ route('admin.permission.index') }}"><i class="fas fa-key"></i>
                                     Permissions</a></li>
                                 @endcan
 
                                 @can('users.index')
                                     <li class="{{ setActive('admin/user') }}"><a class="nav-link"
-                                        href="#"><i class="fas fa-users"></i> Users</a>
+                                        href="{{ route('admin.user.index') }}"><i class="fas fa-users"></i> Users</a>
                                 </li>
                                 @endcan
                             </ul>
@@ -155,7 +183,7 @@
 
             <footer class="main-footer">
                 <div class="footer-left">
-                    Copyright &copy; 2023 <div class="bullet"></div> SMK INDONESIA <div class="bullet"></div> All Rights
+                    Copyright &copy; <script>document.write(new Date().getFullYear());</script> <div class="bullet"></div> Created By : Lajoyadev <div class="bullet"></div> All Rights
                     Reserved.
                 </div>
                 <div class="footer-right">
